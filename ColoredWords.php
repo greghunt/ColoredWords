@@ -241,8 +241,13 @@ class ColoredWords {
       foreach( $arr as $key => $val ) {
         $str .= ucwords($val);
       }
-      
+
       return $str;
+  }
+
+  public function hex()
+  {
+    return "#" . $this->converted['hex'];
   }
 
 }
