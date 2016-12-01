@@ -3,13 +3,13 @@
 namespace Freshbrewedweb;
 
 function dd( $var ){
-  var_dump($var); die();
+  print_r($var); die();
 }
 
 class ColoredWords {
 
   protected $word;
-
+  protected $converted;
   protected $matches;
 
   protected $cssColorNames = [
@@ -168,7 +168,7 @@ class ColoredWords {
 
   private function sanitize($str)
   {
-    return strtolower($str);
+    return str_replace(' ', '', strtolower($str));
   }
 
   public function exactMatch()
@@ -183,9 +183,33 @@ class ColoredWords {
 
   public function match()
   {
-
     $this->matches = array_filter($this->cssColorNames, function( $color ){
-        return in_array($this->word, $color["words"]);
+        if(strrpos($this->word, $color["name"]) !== false) {
+          //Search by name
+          return true;
+        } else {
+          //Search by words
+          foreach( $color["words"] as $word ) {
+            if(strrpos($this->word, $word) !== false) {
+              return true;
+            }
+          }
+        }
+    });
+
+    return $this;
+  }
+
+  public function sortByRelevance()
+  {
+    //Calculate scores
+    foreach( $this->matches as $key => $color ) {
+      similar_text($color['name'], $this->word, $percent);
+      $this->matches[$color['name']]['score'] = round($percent);
+    }
+    //Sort by scores
+    usort($this->matches, function ($item1, $item2) {
+        return $item2['score'] <=> $item1['score'];
     });
 
     return $this;
@@ -196,5 +220,29 @@ class ColoredWords {
       return $this->matches;
   }
 
+  public function convert()
+  {
+    $this->match()->sortByRelevance();
+    $this->converted = $this->matches[0];
+    return $this;
+  }
+
+  public function name( $camel = False )
+  {
+    if( $camel && !empty($this->converted['words']) )
+      return $this->camelCase($this->converted['words']);
+
+    return $this->converted['name'];
+  }
+
+  private function camelCase( $arr )
+  {
+      $str = array_shift($arr);
+      foreach( $arr as $key => $val ) {
+        $str .= ucwords($val);
+      }
+      
+      return $str;
+  }
 
 }
