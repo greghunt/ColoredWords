@@ -1,14 +1,17 @@
 {
     "name": "freshbrewedweb/colored-words",
     "description": "PHP utility to convert colors to their closest CSS color name.",
+    "keywords": ["convert", "css", "colors", "utility", "helper"],
+    "homepage": "https://github.com/freshbrewedweb/ColoredWords",
     "license": "MIT",
     "authors": [
         {
             "name": "Greg Hunt",
-            "email": "freshbrewedweb@gmail.com"
+            "email": "freshbrewedweb@gmail.com",
+            "homepage": "https://freshbrewedweb.com"
         }
     ],
     "require": {
-      "php": "^7.0"
+      "php": ">=7.0"
     }
 }
