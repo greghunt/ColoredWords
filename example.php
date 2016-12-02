@@ -30,10 +30,16 @@ try {
         color: white;
         border: none;
       }
+      pre {
+        background-color: #f2f2f2;
+        color: #333;
+        text-align: left;
+        padding: 1em;
+      }
     </style>
   </head>
   <body>
-    <form style="width:90%; max-width:400px;margin:3em auto;">
+    <form style="width:90%; max-width:600px;margin:3em auto;">
       <div style="display:flex;">
         <input type="text" name="word" value="<?= $word ?>" style="flex: 1 0 auto">
         <button type="submit" style="flex: 1 0 auto">Convert</button>
@@ -49,9 +55,13 @@ try {
       <input
         type="text"
         value="<?= $word ? $converted->name(TRUE) : "Not set" ?>"
-        style="width: 100%; text-align: center; margin-top: 1em;<?= $word ? 'color: ' . $converted->hex() : NULL ?>"
+        style="font-size: 1.5em;width: 100%; text-align: center; margin-top: 1em; color: #aaa; font-weight: bold;"
         disabled
       >
+      <pre>
+        <?php print_r( $color->getWord() ) ?>
+        <?php print_r( $color->get() ) ?>
+      </pre>
       <?php endif; ?>
     </form>
   </body>
