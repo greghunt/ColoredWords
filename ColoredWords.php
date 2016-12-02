@@ -3,9 +3,14 @@
 namespace Freshbrewedweb;
 
 function dd( $var ){
-  print_r($var); die();
+  dump($var);
+  die();
 }
-
+function dump( $var ) {
+  echo '<pre style="border: 2px solid black; background: rgba(0,0,0,0.8); padding: 1em; color:#70f038">';
+  var_dump($var);
+  echo '</pre>';
+}
 class ColoredWords {
 
   protected $word;
@@ -184,7 +189,8 @@ class ColoredWords {
   public function match()
   {
     $this->matches = array_filter($this->cssColorNames, function( $color ){
-        if(strrpos($this->word, $color["name"]) !== false) {
+
+        if(strrpos($color["name"], $this->word) !== false) {
           //Search by name
           return true;
         } else {
@@ -223,6 +229,11 @@ class ColoredWords {
   public function convert()
   {
     $this->match()->sortByRelevance();
+
+    if(empty($this->matches)) {
+      throw new \Exception('Could not find match.');
+    }
+
     $this->converted = $this->matches[0];
     return $this;
   }
