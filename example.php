@@ -12,14 +12,13 @@ try {
 } catch( Exception $e ) {
   $error = $e->getMessage();
 }
-
 ?>
 <!DOCTYPE html>
 <html>
   <head>
     <style>
       body {
-        background-color: <?= $word ? $converted->hex() : 'white' ?>;
+        background-color: <?= $converted ? $converted->hex() : 'white' ?>;
       }
       input {
         padding: 0.5em 1em;

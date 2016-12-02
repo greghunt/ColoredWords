@@ -11,6 +11,7 @@ function dump( $var ) {
   var_dump($var);
   echo '</pre>';
 }
+
 class ColoredWords {
 
   protected $word = [];
@@ -21,6 +22,8 @@ class ColoredWords {
   protected $synonyms = [
       ['light', 'pale', 'pastel'],
       ['dark', 'deep'],
+      ['purple', 'mauve'],
+      ['near', 'off'],
   ];
 
   public function __construct( $word )
@@ -35,9 +38,10 @@ class ColoredWords {
 
   private function setUpWord( $word )
   {
-    $this->word['name'] = $this->sanitize($word);
-    $words = preg_split( '/(\s|&|-)/', $word );
+    $this->word['original'] = $word;
+    $words = preg_split( '/(\s|&|-|\/)/', $word );
     $this->word['words'] = array_map('strtolower', $words);
+    $this->word['name'] = $this->sanitize($this->word['words']);
     $this->applySynonyms();
   }
 
@@ -85,9 +89,9 @@ class ColoredWords {
     $this->cssColorNames = $colors;
   }
 
-  private function sanitize($str)
+  private function sanitize($words)
   {
-    return str_replace(' ', '', strtolower($str));
+    return implode('', $words);
   }
 
   private function applySynonyms()
@@ -161,9 +165,9 @@ class ColoredWords {
   {
     $this->matches = array_filter($this->cssColorNames, function( $color ){
         if(
-          // $this->matchWords($color) ||
-          $this->matchSynonyms($color)
-          // $this->matchName($color)
+          $this->matchWords($color) ||
+          $this->matchSynonyms($color) ||
+          $this->matchName($color)
         ) {
           return true;
         }
@@ -181,7 +185,7 @@ class ColoredWords {
   public function sortByRelevance()
   {
     //Sort by scores
-    usort($this->matches, function ($prev, $next) {
+    usort($this->cssColorNames, function ($prev, $next) {
         return $next->score <=> $prev->score;
     });
 
@@ -195,13 +199,14 @@ class ColoredWords {
 
   public function convert()
   {
-    $this->match()->sortByRelevance();
+    $this->sortByRelevance();
 
     if(empty($this->matches)) {
-      throw new \Exception('Could not find match.');
+      $this->converted = $this->cssColorNames[0];
+    } else {
+      $this->converted = $this->matches[0];
     }
 
-    $this->converted = $this->matches[0];
     return $this;
   }
 
