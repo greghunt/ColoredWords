@@ -4,7 +4,7 @@ PHP utility to convert colors to their closest CSS color name.
 ## Usage
 
 ```php
-$word = "Lightish Blue";
+$word = "Blue-pastel";
 $color = new ColoredWords( $word );
 
 echo $color->convert()->name();
