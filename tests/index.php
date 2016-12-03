@@ -58,8 +58,10 @@ try {
         disabled
       >
       <pre>
-        <?php print_r( $color->getWord() ) ?>
-        <?php print_r( $color->get() ) ?>
+        <div>Hex code: <?= $converted->hex() ?></div>
+        <div>CSS Level <?= $converted->cssLevel() ?></div>
+        <!-- <?php print_r( $color->getWord() ) ?> -->
+        <!-- <?php print_r( $color->get() ) ?> -->
       </pre>
       <?php endif; ?>
     </form>
