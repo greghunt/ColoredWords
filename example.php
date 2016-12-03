@@ -1,13 +1,11 @@
 <?php
 
-require "ColoredWords.php";
-
-use Freshbrewedweb\ColoredWords;
+require __DIR__ . '/vendor/autoload.php';
 
 $word = $_GET['word'] ?? NULL;
 
 try {
-  $color = new ColoredWords( $word );
+  $color = new \Freshbrewedweb\ColoredWords( $word );
   $converted = $color->convert();
 } catch( Exception $e ) {
   $error = $e->getMessage();
