@@ -11,12 +11,13 @@
             "homepage": "https://freshbrewedweb.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
       "php": ">=5.6"
     },
     "autoload": {
          "psr-4": {
-             "Fresbrewedweb\\": "src"
+             "Fresbrewedweb": "src/"
          }
      }
 }
