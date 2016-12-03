@@ -223,4 +223,9 @@ class ColoredWords {
     return "#" . $this->converted->hex;
   }
 
+  public function cssLevel()
+  {
+    return $this->converted->cssLevel;
+  }
+
 }
