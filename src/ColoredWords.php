@@ -1,6 +1,6 @@
 <?php
 
-namespace Freshbrewedweb;
+namespace Freshbrewedweb\ColoredWords;
 
 function dd( $var ){
   dump($var);

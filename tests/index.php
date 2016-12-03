@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Freshbrewedweb\ColoredWords;
+use Freshbrewedweb\ColoredWords\ColoredWords;
 
 $word = $_GET['word'] ?? NULL;
 
