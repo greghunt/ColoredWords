@@ -10,6 +10,9 @@ $color = new ColoredWords( $word );
 echo $color->convert()->name();
 ```
 
+## [Demo](https://freshbrewedweb.com/demos/ColoredWords/tests/index.php?word=Blue-pastel)
+[View the demo](https://freshbrewedweb.com/demos/ColoredWords/tests/index.php?word=Blue-pastel)
+
 **Results** in `lightblue`
 
 ## API
