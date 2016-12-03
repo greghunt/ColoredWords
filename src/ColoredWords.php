@@ -47,7 +47,7 @@ class ColoredWords {
 
   private function setUpColors()
   {
-    $colors = json_decode(file_get_contents("cssColorNames.json"));
+    $colors = json_decode(file_get_contents(__DIR__ . "/cssColorNames.json"));
 
     $this->cssColorNames = array_map(function( $color ) {
       if( empty($color->words) ) {
