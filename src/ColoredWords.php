@@ -21,10 +21,20 @@ class ColoredWords {
   protected $cssOnly;
 
   protected $synonyms = [
-      ['light', 'pale', 'pastel'],
-      ['dark', 'deep'],
-      ['purple', 'mauve'],
+      ['light', 'pale', 'pastel', 'alabaster', 'white'],
+      ['pale', 'ecru', 'brown'],
+      ['dark', 'deep', 'black', 'ebony'],
+      ['amber', 'yellow', 'brown', 'beige', 'caramel'],
+      ['gold', 'bronze', 'brown'],
+      ['amethyst', 'purple', 'mauve'],
       ['near', 'off'],
+      ['avocado', 'green'],
+      ['azure', 'blue', 'baby'],
+      ['red', 'burgundy', 'maroon', 'dark'],
+      ['red', 'pink', 'bright', 'cerise', 'cherry', 'claret'],
+      ['gray', 'grey', 'charcoal'],
+      ['red', 'brown', 'cinnamon', 'copper'],
+      ['yellow', 'white', 'cream'],
   ];
 
   public function __construct( $word, $cssOnly = TRUE )
