@@ -7,7 +7,7 @@ use Freshbrewedweb\ColoredWords\ColoredWords;
 $word = $_GET['word'] ?? NULL;
 
 try {
-  $color = new ColoredWords( $word );
+  $color = new ColoredWords( $word, FALSE );
   $converted = $color->convert();
 } catch( Exception $e ) {
   $error = $e->getMessage();

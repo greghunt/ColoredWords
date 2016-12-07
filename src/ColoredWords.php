@@ -18,6 +18,7 @@ class ColoredWords {
   protected $converted;
   protected $matches;
   protected $cssColorNames;
+  protected $cssOnly;
 
   protected $synonyms = [
       ['light', 'pale', 'pastel'],
@@ -26,8 +27,9 @@ class ColoredWords {
       ['near', 'off'],
   ];
 
-  public function __construct( $word )
+  public function __construct( $word, $cssOnly = TRUE )
   {
+      $this->cssOnly = $cssOnly;
       $this->setUpWord($word);
       $this->setUpColors();
   }
@@ -47,7 +49,13 @@ class ColoredWords {
 
   private function setUpColors()
   {
-    $colors = json_decode(file_get_contents(__DIR__ . "/cssColorNames.json"));
+    $css = json_decode(file_get_contents(__DIR__ . "/cssColorNames.json"));
+    $social = json_decode(file_get_contents(__DIR__ . "/socialColorNames.json"));
+    if( $this->cssOnly ) {
+      $colors = $css;
+    } else {
+      $colors = array_merge($css, $social);
+    }
 
     $this->cssColorNames = array_map(function( $color ) {
       if( empty($color->words) ) {
