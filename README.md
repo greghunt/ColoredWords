@@ -12,8 +12,8 @@ echo $color->convert()->name();
 
 **Results** in `lightblue`
 
-## [Demo](https://freshbrewedweb.com/demos/ColoredWords/tests/index.php?word=Blue-pastel)
-[View the demo](https://freshbrewedweb.com/demos/ColoredWords/tests/index.php?word=Blue-pastel)
+## [Demo](https://demo.freshbrewedweb.com/ColoredWords/tests/index.php?word=Blue-pastel)
+[View the demo](https://demo.freshbrewedweb.com/ColoredWords/tests/index.php?word=Blue-pastel)
 
 ## API
 - `get` gets the resulting matches.
